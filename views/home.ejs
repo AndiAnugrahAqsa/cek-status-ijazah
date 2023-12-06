@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <title>Cek Status Ijazah</title>
+</head>
+<body>
+    <h1 class="text-center mt-3 mb-3">Cek Status Usulan Ijazah</h1>
+    <div class="card p-3 mx-auto" style="width: 18rem;">
+        <form onsubmit="checkStatus(event)">
+            <label for="nim" class="form-label">Masukkan NIM Anda:</label>
+            <input id="nim" value="<%= id %>" type="number" class="form-control mb-4" placeholder="NIM"/>
+            <button class="btn btn-primary w-100" type="submit">Cek status</button>
+        </form>
+    </div>
+    <% if (name) { %>
+        <div class="card mx-auto w-75 p-2 mt-5">
+            <table class="table">
+                <tr>
+                    <th class="w-25">NIM</th>
+                    <td>:</td>
+                    <td><%= id %></td>
+                </tr>
+                <tr>
+                    <th>Nama</th>
+                    <td>:</td>
+                    <td><%= name %></td>
+                </tr>
+                <tr>
+                    <th>Tanggal Masuk Berkas</th>
+                    <td>:</td>
+                    <td><%= entry_date %></td>
+                </tr>
+                <tr>
+                    <th>Nomor Register Ijazah</th>
+                    <td>:</td>
+                    <td><%= regist_number %></td>
+                </tr>
+                <tr>
+                    <th>Status</th>
+                    <td>:</td>
+                    <td>
+                        <p class="d-inline text-monoscape rounded-1 p-1 px-2 <%= status_id === 1 ? 'text-bg-danger' : status_id === 6? 'text-bg-success': status_id === 7 ? 'text-bg-primary' : 'text-bg-secondary'%>">
+                            <%= label %>
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Keterangan</th>
+                    <td>:</td>
+                    <td><%= information %></td>
+                </tr>
+                <tr>
+                    <th>Catatan</th>
+                    <td>:</td>
+                    <td><%= note || "-" %></td>
+                </tr>
+            </table>
+        </div>
+    <% } else if(id) { %>
+        <h6 class="mt-5 mx-3 p-3 text-center text-bg-danger">Data tidak ditemukan</h6>
+    <% }%>
+</body>
+<script src="/javascript/home.js"></script>
+
+</html>

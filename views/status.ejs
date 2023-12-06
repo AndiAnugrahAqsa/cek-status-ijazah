@@ -1,0 +1,73 @@
+<%- include('./components/header'); -%>
+      <div class="mx-3 mt-3">
+        <div class="mb-2 d-flex justify-content-between">
+          <h3>Status</h3>
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#statusModal" onclick="document.getElementById('statusModalLabel').innerHTML = 'Tambahkan Status'">
+          + Tambah data
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="statusModal" tabindex="-1" aria-labelledby="statusModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="statusModalLabel">Tambah Status</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="closeModal('formStatus')"></button>
+              </div>
+              <div class="modal-body">
+                <form id="formStatus" onsubmit="submitStatus(event)">
+                  <div class="mb-3">
+                    <label for="id" class="form-label">ID</label>
+                    <input type="number" class="form-control" id="id">
+                  </div>
+                  <div class="mb-3">
+                    <label for="label" class="form-label">Label</label>
+                    <input type="text" class="form-control" id="label" required>
+                  </div>
+                  <div class="mb-3">
+                    <label for="information" class="form-label">Keterangan</label>
+                    <input type="text" class="form-control" id="information"></input>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <table id="example" class="display table-bordered p-2" style="width:100%">
+            <thead class="bg-primary text-white">
+              <tr class="">
+                <th scope="col">ID</th>
+                <th scope="col">Label</th>
+                <th scope="col">Keterangan</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% status.forEach((status, i)=>{ %>
+              <tr>
+                <td><%= status.id %></td>
+                <td><%= status.label %></td>
+                <td><%= status.information %></td>
+                <td>
+                  <div class="d-flex">
+                    <button class="btn btn-secondary btn-sm me-1" data-bs-toggle="modal" data-bs-target="#statusModal" onclick="editStatus(<%= JSON.stringify(status) %>)">
+                      <i class="bi bi-pencil-square"></i>
+                    </button>
+                    <button class="btn btn-danger btn-sm" onclick="deleteStatus(<%=status.id%>)"><i class="bi bi-trash3-fill"></i></button>
+                  </div>
+                </td>
+              </tr>
+              <% }) %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+<%- include('./components/footer'); -%>

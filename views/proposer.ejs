@@ -1,0 +1,104 @@
+<%- include('./components/header'); -%>
+      <div class="mx-3 mt-3">
+        <div class="mb-2 d-flex justify-content-between">
+          <h3>Proposer</h3>
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#proposerModal" onclick="document.getElementById('proposerModalLabel').innerHTML = 'Tambahkan Pengusul'">
+          + Tambah data
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="proposerModal" tabindex="-1" aria-labelledby="proposerModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="proposerModalLabel">Tambah Pengusul</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="closeModal('formProposer')"></button>
+              </div>
+              <div class="modal-body">
+                <form id="formProposer" onsubmit="submitProposer(event)">
+                  <div class="mb-3">
+                    <label for="id" class="form-label">NIM</label>
+                    <input type="number" class="form-control" id="id" required>
+                  </div>
+                  <div class="mb-3">
+                    <label for="name" class="form-label">Nama</label>
+                    <input type="text" class="form-control" id="name" required>
+                  </div>
+                  <div class="mb-3">
+                    <label for="entry_date" class="form-label">Tanggal masuk berkas</label>
+                    <input type="date" class="form-control" id="entry_date" required>
+                  </div>
+                  <div class="mb-3">
+                    <label for="regist_number" class="form-label">Nomor registrasi</label>
+                    <input type="number" class="form-control" id="regist_number" required>
+                  </div>
+                  <div class="mb-3">
+                    <label for="status_id" class="form-label">Status</label>
+                    <select class="form-select" id="status_id" aria-label="Default select example" required>
+                      <option value="0" selected>Pilih status</option>
+                      <%status.forEach((status)=>{%>
+                        <option value="<%= status.id %>"><%= status.label %></option>
+                      <%})%>
+                    </select>
+                  </div>
+                  <div class="mb-3">
+                    <label for="note" class="form-label">Catatan</label>
+                    <textarea type="text" class="form-control" rows="5" id="note"></textarea>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <table id="example" class="display table-bordered p-2" style="width:100%">
+            <thead class="bg-primary text-white">
+              <tr class="">
+                <th scope="col">No.</th>
+                <th scope="col">NIM</th>
+                <th scope="col">Nama</th>
+                <th scope="col">Tanggal masuk berkas</th>
+                <th scope="col">Nomor Register</th>
+                <th scope="col">Status</th>
+                <th scope="col">Keterangan</th>
+                <th scope="col">Catatan</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% proposers.forEach((proposer, i)=>{ %>
+              <tr>
+                <th scope="row"><%= i+1 %></th>
+                <td><%= proposer.id %></td>
+                <td><%= proposer.name %></td>
+                <td><%= proposer.entry_date %></td>
+                <td><%= proposer.regist_number %></td>
+                <td>
+                  <span class="text-monoscape rounded-1 p-1 px-2 <%= proposer.status_id === 1 ? 'text-bg-danger' : proposer.status_id === 6? 'text-bg-success': proposer.status_id === 7? 'text-bg-primary': 'text-bg-secondary'%>">
+                    <%= proposer.label %>
+                  </span>
+                </td>
+                <td><%= proposer.information %></td>
+                <td><%= proposer.note || "-" %></td>
+                <td>
+                  <div class="d-flex">
+                    <button class="btn btn-secondary btn-sm me-1" data-bs-toggle="modal" data-bs-target="#proposerModal" onclick="editProposer(<%= JSON.stringify(proposer) %>)">
+                      <i class="bi bi-pencil-square"></i>
+                    </button>
+                    <button class="btn btn-danger btn-sm" onclick="deleteProposer(<%=proposer.id%>)"><i class="bi bi-trash3-fill"></i></button>
+                  </div>
+                </td>
+              </tr>
+              <% }) %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+<%- include('./components/footer'); -%>

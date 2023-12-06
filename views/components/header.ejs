@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.css" />
+    <script src="/javascript/auth.js"></script>
+    <title>Dashboard</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary px-3">
+        <a class="navbar-brand">Dashboard</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarNav">
+          <ul class="navbar-nav text-center">
+            <li class="nav-item active">
+              <a class="nav-link" href="/dashboard/proposer">Pengusul</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/dashboard/status">Status</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="adminLink" href="/dashboard/admin">Admin</a>
+            </li>
+          </ul>
+          <ul class="navbar-nav text-center">
+            <li class="nav-item">
+              <a class="nav-link" type="button" data-bs-toggle="modal" data-bs-target="#changePasswordModal">Change Password</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" type="button" onclick="logout()">Logout</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <div class="modal fade" id="changePasswordModal" tabindex="-1" aria-labelledby="changePasswordModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <form id="formChangePassword" onsubmit="changePassword(event)">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="changePasswordModalLabel">Change Password</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                  <label class="form-label" for="oldPassword">Password Lama</label>
+                  <input type="text" class="form-control" id="oldPassword" required>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label" for="newPassword">Password Baru</label>
+                  <input type="text" class="form-control" id="newPassword" oninput="typingPassword(event)" required>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label" for="newPasswordConfirmation">Konfirmasi Password Baru</label>
+                  <label class="text-danger d-none" id="confirmPasswordErrorLabel">New password and new password confirmation is not same</label>
+                  <input type="text" class="form-control" id="newPasswordConfirmation" oninput="typingPassword(event)" required>
+                </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Save change</button>
+            </div>
+          </form>
+          </div>
+        </div>
+      </div>
+      
