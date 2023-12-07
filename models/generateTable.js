@@ -1,3 +1,4 @@
+import { hashingPassword } from "../helpers/utils.js";
 import ManageDB from "./template.js";
 
 const generateTable = async() => {
@@ -10,10 +11,11 @@ const generateTable = async() => {
 }
 
 const insertDefaultDataForAdminsTable = async() => {
+    const hashPassword = await hashingPassword('admin123')
         const data = [[
             '123456789',
             'A. Anugrah Aqsa',
-            'admin123',
+            hashPassword,
             1
         ]]
     ManageDB("INSERT IGNORE INTO admins (id, name, password, is_super) VALUES ? ", [data])    
