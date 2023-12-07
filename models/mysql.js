@@ -2,10 +2,10 @@ import mysql from 'mysql'
 import config from '../helpers/config.js'
 
 const connection = mysql.createConnection({
-  host: config.dbHost,
-  user: config.dbUser,
-  password: config.dbPassword,
-  database: config.dbName
+  host: config.DB_HOST,
+  user: config.DB_USER,
+  password: config.DB_PASSWORD,
+  database: config.DB_NAME
 })
 
 connection.connect()

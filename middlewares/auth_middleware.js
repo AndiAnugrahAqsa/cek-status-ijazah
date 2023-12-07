@@ -4,7 +4,7 @@ import config from "../helpers/config.js";
 export const generateToken = (admin) => {
     const token = jwt.sign(
         { id: admin.id,  is_super: admin.is_super},
-        config.tokenKey,
+        config.TOKEN_KEY,
         {
           expiresIn: "1h",
         }
@@ -14,7 +14,7 @@ export const generateToken = (admin) => {
 
 export const verifyToken = (req, res, next) => {;
     const token = req.headers.authorization && req.headers.authorization.split(" ")[1]
-    jwt.verify(token, config.tokenKey,(err, decode)=>{
+    jwt.verify(token, config.TOKEN_KEY,(err, decode)=>{
         if (err) {
             res.status(401).redirect('/dashboard/login')
         }else{

@@ -1,14 +1,15 @@
-// config.js
 import dotenv from "dotenv"
+
 dotenv.config();
+
 const config = {
-  saltRounds: parseInt(process.env.SALT_ROUNDS),
-  tokenKey: process.env.TOKEN_KEY,
-  dbName: process.env.DB_NAME,
-  dbHost: process.env.DB_HOST,
-  dbUser: process.env.DB_USER,
-  dbPassword: process.env.DB_PASSWORD,
-  port: process.env.PORT,
+  SALT_ROUNDS: parseInt(process.env.SALT_ROUNDS),
+  TOKEN_KEY: process.env.TOKEN_KEY,
+  DB_NAME: process.env.DB_NAME,
+  DB_HOST: process.env.DB_HOST,
+  DB_USER: process.env.DB_USER,
+  DB_PASSWORD: process.env.DB_PASSWORD,
+  PORT: process.env.PORT,
 };
 
 export default config

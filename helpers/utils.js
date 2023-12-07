@@ -12,7 +12,7 @@ const addZeroInDate = (dateValue) =>{
 
 export const hashingPassword = async(password) => {
     const hashPassword = await bcrypt
-        .hash(password, config.saltRounds)
+        .hash(password, config.SALT_ROUNDS)
         .then(hash => {
             return hash
         })
