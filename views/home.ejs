@@ -7,7 +7,11 @@
     <title>Cek Status Ijazah</title>
 </head>
 <body>
-    <h1 class="text-center mt-3 mb-3">Cek Status Usulan Ijazah</h1>
+    <div class="bg-primary d-flex justify-content-between py-2 px-4 align-items-center">
+        <h2 class="text-light">Status Ijazah App</h2>
+        <a class="text-light" href="/dashboard/login">Login as admin</a>
+    </div>
+    <h3 class="text-center mt-3 mb-3">Cek Status Usulan Ijazah</h3>
     <div class="card p-3 mx-auto" style="width: 18rem;">
         <form onsubmit="checkStatus(event)">
             <label for="nim" class="form-label">Masukkan NIM Anda:</label>
@@ -61,7 +65,7 @@
         </div>
     <% } else if(id) { %>
         <h6 class="mt-5 mx-3 p-3 text-center text-bg-danger">Data tidak ditemukan</h6>
-    <% }%>
+    <% }%>    
 </body>
 <script src="/javascript/home.js"></script>
 
