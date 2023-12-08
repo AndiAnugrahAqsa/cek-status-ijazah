@@ -32,8 +32,8 @@ const proposerController = {
     },
     create: async(req, res)=>{
         const data = req.body
-        const proposer = new ProposerModel(data)
-        proposer.create()
+        proposerModel.setProposer(data)
+        proposerModel.create()
         .then(()=>{
             res
             .status(200)
@@ -52,8 +52,8 @@ const proposerController = {
     },
     edit: async(req, res) =>{
         const data = req.body
-        const proposer = new ProposerModel(data)
-        proposer.edit()
+        proposerModel.setProposer(data)
+        proposerModel.edit()
         .then(()=>{
             res
             .status(200)

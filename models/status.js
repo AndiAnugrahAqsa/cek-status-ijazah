@@ -2,6 +2,10 @@ import ManageDB from './template.js'
 
 class StatusModel {
     constructor(data={}){
+        this.setModel(data)
+    }
+
+    setModel = (data={}) => {
         this.id = data.id
         this.label = data.label
         this.information = data.information

@@ -13,8 +13,8 @@ const statusController = {
     },
     create: async(req, res)=>{
         const data = req.body
-        const status = new StatusModel(data)
-        status.create()
+        statusModel.setModel(data)
+        statusModel.create()
         .then(()=>{
             res
             .status(200)
@@ -33,8 +33,8 @@ const statusController = {
     },
     edit: async(req, res) =>{
         const data = req.body
-        const status = new StatusModel(data)
-        status.edit()
+        statusModel.setModel(data)
+        statusModel.edit()
         .then(()=>{
             res
             .status(200)

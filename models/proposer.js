@@ -2,6 +2,10 @@ import ManageDB from './template.js'
 
 class ProposerModel {
     constructor(data={}){
+        this.setProposer(data)
+    }
+
+    setProposer = (data={}) => {
         this.id = data.id
         this.name = data.name
         this.entry_date = data.entry_date

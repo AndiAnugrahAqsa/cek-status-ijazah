@@ -3,6 +3,10 @@ import ManageDB from './template.js'
 
 class AdminModel {
     constructor(data={}){
+        this.setAdmin(data)
+    }
+
+    setAdmin = (data={}) => {
         this.id = data.id
         this.name = data.name
         this.password = data.password || "admin123"

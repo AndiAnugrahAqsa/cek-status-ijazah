@@ -80,9 +80,9 @@
                 <td><%= proposer.entry_date %></td>
                 <td><%= proposer.regist_number %></td>
                 <td>
-                  <span class="text-monoscape rounded-1 p-1 px-2 <%= proposer.status_id === 1 ? 'text-bg-danger' : proposer.status_id === 6? 'text-bg-success': proposer.status_id === 7? 'text-bg-primary': 'text-bg-secondary'%>">
+                  <p class="text-monoscape text-center mb-0 rounded-1 p-1 px-2 <%= proposer.status_id === 1 ? 'text-bg-danger' : proposer.status_id === 6? 'text-bg-success': proposer.status_id === 7? 'text-bg-primary': 'text-bg-secondary'%>">
                     <%= proposer.label %>
-                  </span>
+                  </p>
                 </td>
                 <td><%= proposer.information %></td>
                 <td><%= proposer.note || "-" %></td>

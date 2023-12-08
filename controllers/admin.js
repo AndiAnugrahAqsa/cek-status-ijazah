@@ -26,8 +26,8 @@ const adminController = {
     },
     create: async(req, res)=>{
         const data = req.body
-        const admin = new AdminModel(data)
-        admin.create()
+        adminModel.setAdmin(data)
+        adminModel.create()
         .then(()=>{
             res
             .status(200)
@@ -46,8 +46,8 @@ const adminController = {
     },
     edit: async(req, res) =>{
         const data = req.body
-        const admin = new AdminModel(data)
-        admin.edit()
+        adminModel.setAdmin(data)
+        adminModel.edit()
         .then(()=>{
             res
             .status(200)
@@ -116,8 +116,8 @@ const adminController = {
             const isNewPasswordValid = !(await checkPasswordValidation(bodyRequest.newPassword, existAdmin[0].password))
             if (isNewPasswordValid) {
                 existAdmin[0].password = await hashingPassword(bodyRequest.newPassword)
-                const admin = new AdminModel(existAdmin[0])
-                admin.edit()
+                adminModel.setAdmin(existAdmin[0])
+                adminModel.edit()
                 res
                 .status(200)
                 .json({
