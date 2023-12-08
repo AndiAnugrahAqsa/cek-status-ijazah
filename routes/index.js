@@ -8,10 +8,6 @@ import statusRouter from "./status.js";
 
 const routes = (app) => {
 
-    app.get('/favicon.ico', (req,res)=>{
-        return;
-    })
-
     app.post('/dashboard/check-token', verifyToken)
     app.get('/', proposerController.home)
     app.get('/:id', proposerController.getByID)
